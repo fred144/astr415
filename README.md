@@ -1,2 +1,2 @@
-# astr415
+# ASTR415
 Fall 2022
