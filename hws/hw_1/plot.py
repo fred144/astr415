@@ -23,7 +23,7 @@ ax[1].plot(add_optimized[:,0], add[:,1], "-o", label= "optimize addition")
 ax[1].plot(multiply_optimized[:,0], multiply[:,1], "-o", label= "optimize multiplication")
 
 ax[1].set(yscale="log", xscale="log", title="gcc, unoptimized", xlabel="n loops", ylabel="execution times (s)")
-ax[1].legend(ncol=2, fontsize=10) 
+ax[1].legend(fontsize=10) 
 
 plt.savefig("./results.png")
 plt.show()
