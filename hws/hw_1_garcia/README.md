@@ -1,5 +1,5 @@
 # Fred Angelo Garcia | P. Set #1 | ASTR415 | FAll 2022
-> Visit github.com/fred144/astr415/tree/main/hws/hw_1 
+> Visit github.com/fred144/astr415/tree/main/hws/hw_1_garcia
 > for a full rendered version of this file. 
 > 
 ## Compilation 
