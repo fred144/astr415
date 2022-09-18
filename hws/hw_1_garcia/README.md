@@ -42,7 +42,7 @@ We have the following data, see .dat files if desired. Notice, we'll consider th
 
 > We just take the ratio to see how many million loops, each constituting to an operation, the program can do in one second. 
 
-$\mathrm{mflops_{addition}} = 10^6 / (2.654 \times 10^{-3}) = 2.654 \times 10^9 \rightarrow \; \sim 3 \mathrm{TFlops}$ 
+$\mathrm{mflops_{addition}} = 10^6 / (2.654 \times 10^{-3}) = 2.654 \times 10^9 \rightarrow \sim 3 \mathrm{TFlops}$ 
 
 $\mathrm{mflops_{multiplication}} \sim 3 \mathrm{TFlops}$
 
