@@ -42,9 +42,9 @@ We have the following data, see .dat files if desired. Notice, we'll consider th
 
 > We just take the ratio to see how many million loops, each constituting to an operation, the program can do in one second. 
 
-$\mathrm{mflops_{addition}} = 10^6 / (2.654 \times 10^{-3}) = 2.654 \times 10^9 \rightarrow \: \sim 3\: \mathrm{TFlops}$ 
+$\mathrm{mflops_{addition}} = 10^6 / (2.654 \times 10^{-3}) = 2.654 \times 10^9 \rightarrow \; \sim 3\: \mathrm{TFlops}$ 
 
-$\mathrm{mflops_{multiplication}} \sim 3 \: \mathrm{TFlops}$
+$\mathrm{mflops_{multiplication}} \sim 3 \; \mathrm{TFlops}$
 
 **(c)**  Redo one or more plots in question 1b after recompiling your code with optimizations
 turned on (e.g., try the “-O2” compiler flag) and plot the results. Is there a difference? Also try a different compiler if possible, with and without optimizations (e.g., if you used gcc, try icc next. Comment on the results and suggest why differences exist.
