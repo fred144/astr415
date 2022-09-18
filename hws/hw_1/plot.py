@@ -25,5 +25,5 @@ ax[1].plot(multiply_optimized[:,0], multiply[:,1], "-o", label= "optimize multip
 ax[1].set(yscale="log", xscale="log", title="gcc, unoptimized", xlabel="n loops", ylabel="execution times (s)")
 ax[1].legend(ncol=2, fontsize=10) 
 
+plt.savefig("./results.png")
 plt.show()
-plt.savefig("results.png")
