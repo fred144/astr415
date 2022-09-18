@@ -8,5 +8,6 @@ argv:
 	cc -o argv argv.cc
 clean: 
 	rm -rf *.o struct timer argv
+	rm -rf *.png results
 
 # DO NOT DELETE

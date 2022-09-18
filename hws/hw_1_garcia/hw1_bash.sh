@@ -1,6 +1,6 @@
 #!/bin/bash 
 
-rm *.dat
+# rm *.dat
 
 iterations="1e6 3e6 1e7 3e7 1e8 1e9" 
 
@@ -37,20 +37,28 @@ done
 
 
 # here do the optimizations using gcc
-echo "gcc optimized"
+echo ">> gcc optimized"
 
 echo "double precission add"
-echo "# number of iterations, time of execution, the final value" >> gcc_O2_double_add_results.dat
+echo "# number of iterations, time of execution, the final value" >> gcc_optimized_add_results.dat
 for iter_num in $iterations
 do  
-    ./gcc_O2_optimized double add $iter_num >> gcc_O2_double_add_results.dat
-    
+    ./gcc_optimized double add $iter_num >> gcc_optimized_add_results.dat
 done 
 
-echo "double precission multiply"
-echo "# number of iterations, time of execution, the final value" >> gcc_O2_double_multiply_results.dat
+echo "double precission sqrt"
+echo "# number of iterations, time of execution, the final value" >> gcc_optimized_sqrt_results.dat
 for iter_num in $iterations
 do  
-    ./gcc_O2_optimized double multiply $iter_num >> gcc_O2_double_multiply_results.dat
-    
-done 
+    ./gcc_optimized double sqrt $iter_num >> gcc_optimized_sqrt_results.dat
+done
+
+echo "double precission sqrt, cc compiler"
+echo "# number of iterations, time of execution, the final value" >> cc_optimized_sqrt_results.dat
+for iter_num in $iterations
+do  
+    ./cc_optimized double sqrt $iter_num >> cc_optimized_sqrt_results.dat
+done
+
+echo "making plots"
+python3 ./plot.py
