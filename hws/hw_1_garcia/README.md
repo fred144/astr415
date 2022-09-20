@@ -28,12 +28,14 @@ Here is the plot for the final results. I show it here since I will reference it
 ---
 ## Q1
 **(a)**  Write a shell script to construct a table of execution times for double-precision addition and multiplication as a function of n for n = $10^6$, (3) $10^6$, $10^7$, (3) $10^7$, $10^8$, (3) $10^8$, and $10^9$. Do the square-root and raise-to-the-power functions give much different execution times? Comment.
-> Refering to the figure, we see that the powerlaws (slope) share a pretty same exponenet. However, it is noticabnle that the addition and multiplication, both native operations in C. The ones we had to import via ` #include <math.h>`, has a higher intercept and shows that they both have consistentily higher executuion times. This is consistent with the fact that if you are import a new model, it is probably based on current native operation that are use to write a more complicated (therfore more resource heavy) jobs.  
+
+> Refering to the figure, we see that the power laws (slope) share a pretty similar exponent. That is, the rate that execution times increase as a function of loop count is pretty similar for all operation types. However, it is noticable that the addition and multiplication, which are both native operations in C, have a lower y intercept. But the ones we had to import via `#include <math.h>`, have higher intercepts and shows that they both have consistently higher executuion times. This is consistent with the fact that if you are import a new model, that model is probably based on current native operations that are used to write a more complicated (therfore more resource heavy) job.  
 
 **(b)** Plot the data in the table, execution time as a function of n, using any plotting
 package you like. The axes should use a logarithmic scale. Estimate the number of floating-point additions and multiplications (MFLOPs) your code carried out on average per second. 
+
 > See the plot above. In lecture we define MFLOPS – “million floating-point operations per second”. 
-We have the following data, see .dat files if desired. Notice, we'll consider the $n = 10^6$ since this is conveniently a million.  
+We have the following data, see .dat files if desired. Notice, we'll consider the $n = 10^6$ since this is conveniently a million operations, roughly.  
 
 | Operation     | n loops      |time (s)            |
 | ------------- |:------------:| -----:             |
