@@ -66,20 +66,20 @@ void column_major (int n){
 
 int main(int arg_count, char **argv){
     if (arg_count != 3){
-        printf("> Usage: %s fast_idx size_of_matrix \n", argv[0]);
+        printf("> Usage: %s major size_of_matrix \n", argv[0]);
         printf("# N by N Matrix \t Runtime (secs)");
     }
 
-    char *fast_index =  argv[1];
+    char *major=  argv[1];
     double matrix_size = atof(argv[2]);
     double t0, dt;
    
     int success = 1;
-    if (strcmp(fast_index, "columns") == 0){
+    if (strcmp(major, "rows") == 0){
         t0 = get_cpu_time();
         row_major(matrix_size);
         dt = get_cpu_time() - t0; 
-    } else if (strcmp(fast_index, "rows") == 0) {
+    } else if (strcmp(major, "columns") == 0) {
         t0 = get_cpu_time();
         column_major(matrix_size);
         dt = get_cpu_time() - t0; 
