@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "nrutil.h": "c",
-        "assert.h": "c"
+        "assert.h": "c",
+        "math.h": "c"
     }
 }

@@ -28,9 +28,9 @@ int main(){
     printf("%g \n", b[1][1]);
     printf("%g \n ", b[1][2]);
     printf("%g \n", b[1][3]);
-    
-    printf("%g \n", w[1][3]);
 
+    printf("%g \n", w[1][3]);
+    printf("%g \n", w[1][3]);
     // single variable decomposition
 
 }
