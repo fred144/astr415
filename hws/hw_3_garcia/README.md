@@ -21,10 +21,10 @@ user~$ ./hw3_bash.sh
 ## Commentary and Answers 
 
 <img src=./p1_results.png alt="drawing" width="400"/> 
-<img src=./p2_results.png alt="drawing" width="400"/>
+
 <!-- ![image info](./p1_results.png ) -->
 
-*Left is for problem 1 and right is for problem 2*
+*for problem 1*
 
 ### Problem 1
 (a) *Is the round-off error random? What happens in double precision?*
@@ -32,6 +32,9 @@ user~$ ./hw3_bash.sh
 
 
 ### Problem 2
+<img src=./p2_results.png alt="drawing" width="400"/>
+
+*for problem 2*
 
 We define *I*
 
