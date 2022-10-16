@@ -35,16 +35,16 @@ user~$ ./hw3_bash.sh
 
 We define *I*
 
-$I = \begin{bmatrix}r_x^2+r^2_{y}+r_z^2&0&0\\ 0&r_x^2+r^2_{y}+r_z^2&0\\ 0&0&r_x^2+r^2_{y}+r_z^2\end{bmatrix}-\begin{bmatrix}r^2_{x} & r_x r_y & r_xr_z\\ 
+$$I = \begin{bmatrix}r_x^2+r^2_{y}+r_z^2&0&0\\ 0&r_x^2+r^2_{y}+r_z^2&0\\ 0&0&r_x^2+r^2_{y}+r_z^2\end{bmatrix}-\begin{bmatrix}r^2_{x} & r_x r_y & r_xr_z\\ 
 r_yr_x&r^2_{y}&r_yr_z\\
-r_zr_x&r_yr_z&r_z^2\end{bmatrix}$
+r_zr_x&r_yr_z&r_z^2\end{bmatrix}$$
 
 We can simplify this to 
 
-$= \begin{bmatrix}r^2_{y\:}+\:r_z^2&-r_xr_y&-r_xr_z\\ 
+$$= \begin{bmatrix}r^2_{y\:}+\:r_z^2&-r_xr_y&-r_xr_z\\ 
 \:-r_yr_x&r_x^2+\:r_z^2&-r_yr_z\\ 
 \:-r_xr_z&-r_yr_z&r_x^2+r^2_{y\:}
-\end{bmatrix}$ 
+\end{bmatrix}$$ 
 
 Where, for each element, you perform the given operation for one particle and sum it for all particles. 
 
