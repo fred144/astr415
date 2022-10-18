@@ -18,6 +18,27 @@ user~$ make clean
 user~$ make all
 user~$ ./hw3_bash.sh 
 ```
+
+After that, the directory should contain 
+```
+-rw-r--r-- 1 fabg fabg    2911 Oct 18 12:30 README.md       [This file]
+-rwxr-xr-x 1 fabg fabg   16784 Oct 18 12:30 a.out*          [test script]
+-rw-r--r-- 1 fabg fabg  565316 Oct 18 12:30 chap02c.pdf     [text]
+-rw-r--r-- 1 fabg fabg    1640 Oct 18 12:30 double.dat      [program generated data]
+-rw-r--r-- 1 fabg fabg    1640 Oct 18 12:30 float.dat       [program generated data]
+-rw-r--r-- 1 fabg fabg 9203204 Oct 18 12:30 garcia_hw3.tar.gz [zip files]
+drwxr-xr-x 2 fabg fabg    4096 Oct 18 12:30 given_scripts/    [numerical recipes]
+-rwxr-xr-x 1 fabg fabg     253 Oct 18 12:30 hw3_bash.sh*      [main bash script]
+-rw-r--r-- 1 fabg fabg     233 Oct 18 12:30 makefile          [remake entire directory]
+-rw-r--r-- 1 fabg fabg   93213 Oct 18 12:30 p1_results.png    [results]
+-rw-r--r-- 1 fabg fabg  432433 Oct 18 12:30 p2_results.png    [results]
+-rw-r--r-- 1 fabg fabg    2312 Oct 18 12:30 plot.py           [plotting function]
+-rwxr-xr-x 1 fabg fabg   16744 Oct 18 12:30 problem1*         [q1 executable]
+-rw-r--r-- 1 fabg fabg    1647 Oct 18 12:30 problem1.c        [q1 code]
+-rwxr-xr-x 1 fabg fabg   31736 Oct 18 12:30 problem2*         [...]
+-rw-r--r-- 1 fabg fabg    6608 Oct 18 12:30 problem2.c        [...]
+-rw-r--r-- 1 fabg fabg  120499 Oct 18 12:30 ps2.dat           [Given pset data]
+```
 ## Commentary and Answers 
 
 <img src=./p1_results.png alt="drawing" width="400"/> 
@@ -44,9 +65,9 @@ r_zr_x&r_yr_z&r_z^2\end{bmatrix}$$
 
 We can simplify this to 
 
-$$= \begin{bmatrix}r^2_{y\:}+\:r_z^2&-r_xr_y&-r_xr_z\\ 
-\:-r_yr_x&r_x^2+\:r_z^2&-r_yr_z\\ 
-\:-r_xr_z&-r_yr_z&r_x^2+r^2_{y\:}
+$$= \begin{bmatrix}r^2_{y }+  r_z^2&-r_xr_y&-r_xr_z\\ 
+ -r_yr_x&r_x^2+ r_z^2&-r_yr_z\\ 
+ -r_xr_z&-r_yr_z&r_x^2+r^2_{y }
 \end{bmatrix}$$ 
 
 Where, for each element, you perform the given operation for one particle and sum it for all particles. 
