@@ -65,9 +65,9 @@ r_zr_x&r_yr_z&r_z^2\end{bmatrix}$$
 
 We can simplify this to 
 
-$$= \begin{bmatrix}r^2_{y \: }+ \: r_z^2&-r_xr_y&-r_xr_z\\ 
-\: -r_yr_x&r_x^2+ \: r_z^2&-r_yr_z\\ 
-\: -r_xr_z&-r_yr_z&r_x^2+r^2_{y \:}
+$$= \begin{bmatrix}r^2_{y }+  r_z^2&-r_xr_y&-r_xr_z\\ 
+ -r_yr_x&r_x^2+ r_z^2&-r_yr_z\\ 
+ -r_xr_z&-r_yr_z&r_x^2+r^2_{y }
 \end{bmatrix}$$ 
 
 Where, for each element, you perform the given operation for one particle and sum it for all particles. 
