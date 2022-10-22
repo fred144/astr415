@@ -3,6 +3,7 @@
         "nrutil.h": "c",
         "assert.h": "c",
         "math.h": "c",
-        "cmath": "c"
+        "cmath": "c",
+        "ran1.C": "cpp"
     }
 }
