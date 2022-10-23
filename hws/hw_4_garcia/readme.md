@@ -41,9 +41,9 @@ drwxr-xr-x 2 fabg fabg    4096 Oct 22 18:54 given_scripts   [misc scripts]
 ### Problem 1
 
 >We aproach the question by first computing the CDF, P(x). Then solving for the $P^{-1}(U)$, which is the transormed distribution.
->$$\int p(y) dy = \int y\exp({\frac{-y^2}{2}}) dy \rightarrow P(x) = \int_{- \infty}^x y \exp({\frac{-y^2}{2}}) = 1 - \exp(\frac{-x^2}{2})dy$$
->$$ P (P^{-1}(U)) = U = 1 - \exp(\frac{-P^{-1}(U)^2}{2})$$
->$$ P^{-1}(U) = \sqrt{-\ln\left(\left(-U+1\right)^{2}\right)}  \rightarrow  \sqrt{-2\ln\left(-U+1\right)} $$
+$$\int p(y) dy = \int y\exp({\frac{-y^2}{2}}) dy \rightarrow P(x) = \int_{- \infty}^x y \exp({\frac{-y^2}{2}}) = 1 - \exp(\frac{-x^2}{2})dy$$
+$$ P (P^{-1}(U)) = U = 1 - \exp(\frac{-P^{-1}(U)^2}{2})$$
+$$ P^{-1}(U) = \sqrt{-\ln\left(\left(-U+1\right)^{2}\right)}  \rightarrow  \sqrt{-2\ln\left(-U+1\right)} $$
 > We end up with the following. 
 
 <p align="center">
@@ -78,4 +78,5 @@ drwxr-xr-x 2 fabg fabg    4096 Oct 22 18:54 given_scripts   [misc scripts]
 <p align="center">
 <img src=./test.png alt="drawing" width="500"/> 
 </p>
-> It checks out. 
+
+>It checks out. 
