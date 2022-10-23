@@ -1,4 +1,4 @@
- Fred Angelo Garcia | P. Set #3 | ASTR415 | FAll 2022
+# Fred Angelo Garcia | P. Set #4 | ASTR415 | FAll 2022
 Visit [https://github.com/fred144/astr415/tree/main/hws/hw_3_garcia](https://github.com/fred144/astr415/tree/main/hws/hw_4_garcia) for a full rendered version of this file. 
 
 ## Compilation 
