@@ -85,8 +85,9 @@ Knowing that $F= ma = -\nabla\Phi$, we can look at the acceleration in each comp
 
 $$
 \begin{cases}
-a_x = \frac{d^2x}{dt^2}= - \frac{\partial }{\partial x} \left(\frac{-1}{\sqrt{1+2x^2 + 2y^2}}\right) = -  \dfrac{2x}{\left(2x^2+2y^2+1\right)^\frac{3}{2}} \\
-
+a_x = \frac{d^2x}{dt^2}= - \frac{\partial }{\partial x} \left(\frac{-1}{\sqrt{1+2x^2 + 2y^2}}\right) = -  \dfrac{2x}{\left(2x^2+2y^2+1\right)^\frac{3}{2}} 
+\\
+\\
 a_y = \frac{d^2y}{dt^2}= - \frac{\partial }{\partial y} \left(\frac{-1}{\sqrt{1+2x^2 + 2y^2}}\right) = -  \dfrac{2y}{\left(2x^2+2y^2+1\right)^\frac{3}{2}}
 \end{cases}
 $$ 
@@ -94,8 +95,9 @@ $$
 We then get the coupled equations
 $$
 \begin{cases}
- \frac{d^2x}{dt^2}=  -  \dfrac{2x}{\left(2x^2+2y^2+1\right)^\frac{3}{2}} \\
-
+ \frac{d^2x}{dt^2}=  -  \dfrac{2x}{\left(2x^2+2y^2+1\right)^\frac{3}{2}} 
+ \\
+ \\
  \frac{d^2y}{dt^2}= -  \dfrac{2y}{\left(2x^2+2y^2+1\right)^\frac{3}{2}}
 \end{cases}
 $$ 
@@ -105,7 +107,8 @@ Reduce it to first order by integrating, note the negative sign, so it is now th
 We get our coupled first order equations for the x componenet. 
 $$
 \begin{cases}
- \dot{x} = v_x = \dfrac{dx}{dt} = \dfrac{1}{\sqrt{2x^2 + 2y^2 + 1}} \\ 
+ \dot{x} = v_x = \dfrac{dx}{dt} = \dfrac{1}{\sqrt{2x^2 + 2y^2 + 1}} 
+ \\ 
  \\
  a_x = \dfrac{dv_x}{dt} = \dfrac{d^2x}{dt^2} =  -  \dfrac{2x}{\left(2x^2+2y^2+1\right)^\frac{3}{2}}
 \end{cases}
@@ -114,9 +117,10 @@ $$
 Similarly for the y
 $$
 \begin{cases}
- \dot{y} = v_y = \dfrac{dy}{dt} = \dfrac{1}{\sqrt{2x^2 + 2y^2 + 1}} \\ 
+ \dot{y} = v_y = \dfrac{dy}{dt} = \dfrac{1}{\sqrt{2x^2 + 2y^2 + 1}} 
+ \\ 
  \\
- a_y = \dfrac{dv_y}{dt} = \dfrac{d^2y}{dt^2} =  -  \dfrac{2y}{\left(2x^2+2y^2+1\right)^\frac{3}{2}}
+ a_y = \dfrac{dv_y}{dt} = \dfrac{d^2y}{dt^2} =  -  \dfrac{2y}{\left(2x^2+2y^2+1\right)^{\frac{3}{2}}}
 \end{cases}
 $$ 
 
