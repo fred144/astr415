@@ -49,16 +49,20 @@ $$ \frac{d^2 x}{dt^2} = -x$$
 
 Which we can turn into two coupled diff equations 
 
-$\begin{cases}
-\frac{dx}{dt} = v \\ 
-\frac{dv}{dt} = -x \\
-\end{cases}$ 
+$$\begin{cases}
+\frac{dx}{dt} = v 
+\\ 
+\frac{dv}{dt} = -x 
+\\
+\end{cases}$$ 
 
 We can solve this using euler method
-$\begin{cases}
-v_{n+1} (t) = v_n(t) - x_n (t)\Delta t \\
+
+$$\begin{cases}
+v_{n+1} (t) = v_n(t) - x_n (t)\Delta t 
+\\
 x_{n+1} (t) = x_n(t) + v_n(t) \Delta t 
-\end{cases}$ 
+\end{cases}$$ 
 
 Where $n=0, 1, 2,...$ and $v_0 = 1$ and $x_0 = 0$ and $\Delta t$ is the step size.  
 
@@ -77,6 +81,7 @@ ___
 ### Problem 2
 
 We have the potential 
+
 $$
 \Phi = \frac{-1}{\sqrt{1+2x^2 + 2y^2}}
 $$
@@ -93,6 +98,7 @@ a_y = \frac{d^2y}{dt^2}= - \frac{\partial }{\partial y} \left(\frac{-1}{\sqrt{1+
 $$ 
 
 We then get the coupled equations
+
 $$
 \begin{cases}
  \frac{d^2x}{dt^2}=  -  \dfrac{2x}{\left(2x^2+2y^2+1\right)^\frac{3}{2}} 
@@ -105,6 +111,7 @@ $$
 Reduce it to first order by integrating, note the negative sign, so it is now the potential, but positive. 
 
 We get our coupled first order equations for the x componenet. 
+
 $$
 \begin{cases}
  \dot{x} = v_x = \dfrac{dx}{dt} = \dfrac{1}{\sqrt{2x^2 + 2y^2 + 1}} 
@@ -115,6 +122,7 @@ $$
 $$ 
 
 Similarly for the y
+
 $$
 \begin{cases}
  \dot{y} = v_y = \dfrac{dy}{dt} = \dfrac{1}{\sqrt{2x^2 + 2y^2 + 1}} 
