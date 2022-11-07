@@ -71,7 +71,7 @@ Where $n=0, 1, 2,...$ and $v_0 = 1$ and $x_0 = 0$ and $\Delta t$ is the step siz
 <img src=./p1_b.png alt="drawing" width="800"/> 
 </p>
 
->(c) Here we plot the difference in the final values as a function of step size. The absolute differences approach a smaller number as function of decreasing step size (note, flipped axis). As expected, the euler and leapfrog is smillar, but the euler sort of increases as a function of time. With the best performance being for Runge Kutta, which is a more sophisticated routine. Yes, the error decreases as a function of step size, given some noise. It is roughly linear in log-log space which must mean it is a power-law of sort. I would not be surprised if it has an $N^{-1/2}$ dependance, or some other power. Maybe actually $N^{-2}$ by eye. 
+>(c) Here we plot the difference in the final values as a function of step size. The absolute differences approach a smaller number as function of decreasing step size (note, flipped axis). As expected, the euler and leapfrog is smillar, but the euler is shifted down as a function of time. With the best performance (lowest error) being for Runge Kutta, which is a more sophisticated routine. Yes, the error decreases as a function of step size, given some noise. It is roughly linear in log-log space which must mean it is a power-law of sort. I would not be surprised if it has an $N^{-1/2}$ dependance, or some other power. Maybe actually $N^{-2}$ by eye. 
 <p align="center">
 <img src=./p1_c.png alt="drawing" width="400"/> 
 </p>
