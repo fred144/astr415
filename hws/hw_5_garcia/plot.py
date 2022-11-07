@@ -64,7 +64,7 @@ for i, ds in enumerate(p1_data_set):
 ax[0, 0].set_title("Euler's")
 ax[0, 1].set_title("Leap Frog")
 ax[0, 2].set_title("Runge Kutta")
-
+ax[0, 0].set_ylim(-1.5, 1.5)
 ax[4, 1].set_xlabel("time t")
 ax[2, 0].set_ylabel("position x(t)")
 

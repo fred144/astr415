@@ -66,12 +66,12 @@ x_{n+1} (t) = x_n(t) + v_n(t) \Delta t
 
 Where $n=0, 1, 2,...$ and $v_0 = 1$ and $x_0 = 0$ and $\Delta t$ is the step size.  
 
->(a) and (b) Here we show the comparison between analytical and numerical solutions for various step sizes (see legend) and different methods (see each column title). The leap frog and euler's are quite similar, which makes sense given that one could argue that leap frog is a simple modificaiton of euler's. Note, as expected we get convergence as a function of increasing samples, or decreasing sample interval (what we have been calling as $h$). 
+>(a) and (b) Here we show the comparison between analytical and numerical solutions for various step sizes (see legend) and different methods (see each column title). The leap frog and euler's are quite similar, which makes sense given that one could argue that leap frog is a simple modificaiton of euler's (with the exception that the euler diverges or over estimates it). Note, as expected we get convergence as a function of increasing samples, or decreasing sample interval (what we have been calling as $h$). 
 <p align="center">
 <img src=./p1_b.png alt="drawing" width="800"/> 
 </p>
 
->(c) Here we plot the difference in the final values as a function of step size. The absolute differences approach a smaller number as functio of decreasing step size (note, flipped axis). As expected, the euler and leapfrog is smillar, with the best performance being for Runge Kutta, which is a more sophisticated routine. Yes, the error decreases as a function of step size, given some noise. It is roughyl linear in log-log space which must mean it is a power-law of sort. I would not be surprised if it has an $N^{-1/2}$ dependance, or some other power. Maybe actually $N^{-2}$ by eye. 
+>(c) Here we plot the difference in the final values as a function of step size. The absolute differences approach a smaller number as function of decreasing step size (note, flipped axis). As expected, the euler and leapfrog is smillar, but the euler  with the best performance being for Runge Kutta, which is a more sophisticated routine. Yes, the error decreases as a function of step size, given some noise. It is roughyl linear in log-log space which must mean it is a power-law of sort. I would not be surprised if it has an $N^{-1/2}$ dependance, or some other power. Maybe actually $N^{-2}$ by eye. 
 <p align="center">
 <img src=./p1_c.png alt="drawing" width="400"/> 
 </p>

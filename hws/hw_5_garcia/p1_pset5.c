@@ -28,8 +28,8 @@ float vel(float velocity){
 
 void euler(float prev_pos, float prev_vel, float *new_pos, float *new_vel, float step){
     *new_pos = prev_pos + step * prev_vel; // note, can change this depending on the system
-    *new_vel = prev_vel + step * +  accel(*new_pos); // note, can change this depending on the system
-
+    // *new_vel = prev_vel + step * +  accel(*new_pos); // note, can change this depending on the system
+    *new_vel = prev_vel + step * +  accel(prev_pos); 
 }
 
 void leapfrog(float prev_pos, float prev_vel, float *new_pos, float *new_vel, float step){
