@@ -88,7 +88,7 @@ plt.savefig("./p1_c.png", bbox_inches='tight')
 
 
 def pot(x, y):
-    return -1 / np.sqrt(1 + 2 * x**2 + 2 * y**2)
+    return -1 / np.sqrt(1 + (2 * x**2) + (2 * y**2))
 
 
 frog_data_dir = "./problem_2_data/frog/"
@@ -108,7 +108,7 @@ for i, (ds_frog, ds_rk4) in enumerate(zip(frog_data_set, rk4_data_set)):
     frog_data = np.loadtxt(frog_data_dir + ds_frog)
     rk4_data = np.loadtxt(rk4_data_dir + ds_rk4)
 
-    time = frog_data[:, 0]
+    frog_time = frog_data[:, 0]
     frog_x = frog_data[:, 1]
     frog_y = frog_data[:, 2]
     frog_x_vel = frog_data[:, 3]
@@ -117,6 +117,7 @@ for i, (ds_frog, ds_rk4) in enumerate(zip(frog_data_set, rk4_data_set)):
     frog_kinetic_e = (frog_x_vel**2 + frog_y_vel**2) / 2
     frog_potential_e = pot(frog_x, frog_y)
 
+    rk4_time = rk4_data[:, 0]
     rk4_x = rk4_data[:, 1]
     rk4_y = rk4_data[:, 2]
     rk4_x_vel = rk4_data[:, 3]
@@ -136,15 +137,15 @@ for i, (ds_frog, ds_rk4) in enumerate(zip(frog_data_set, rk4_data_set)):
     # ax[i, 0].inset_axes([1, 1, 1, 1])
     energy_ax = ax[i, 1].inset_axes([1.2, 0, 1, 1])
 
-    energy_ax.plot(time, frog_kinetic_e + frog_potential_e, label="leapfrog")
-    energy_ax.plot(time, rk4_kinetic_e + rk4_potential_e, label="rk4 ")
+    energy_ax.plot(frog_time, frog_kinetic_e + frog_potential_e, label="leapfrog")
+    energy_ax.plot(rk4_time, rk4_kinetic_e + rk4_potential_e, label="rk4 ")
 
     energy_ax.set(ylim=(-1, 0.3), xlabel="time")
 
-    if i == 0:
-        energy_ax.legend()
-        energy_ax.tick_params(axis="both", direction="in", which="both")
-        energy_ax.set(title="Total Energy = KE + $\Phi$")
+    # if i == 0:
+    energy_ax.legend()
+    energy_ax.tick_params(axis="both", direction="in", which="both")
+    energy_ax.set(title="Total Energy = KE + $\Phi$")
 
 
 fig.text(0.5, 0.08, r"x", ha="center")

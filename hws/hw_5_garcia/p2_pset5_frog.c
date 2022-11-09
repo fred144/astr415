@@ -6,28 +6,6 @@
 #include "./given_scripts/nrutil.c"
 #include "./given_scripts/nrutil.h"
 
-void coupled_first_order(float time, float input_vec[], float output_vec[]){
-    // time is a a float containing the time step
-    // input_vec is a 2-element vector with the first index having the velocit
-    // and the second having the acceleration. 
-    // you feed this into runge kuta 4. 
-    
-    // input vector has the format [x, vx, y, vy]
-    // input vector has the index  [1, 2, 3, 4]
-    
-    // dx/dt 
-    output_vec[1] = input_vec[2]; 
-    
-    // dv_x/dt
-    output_vec[2] = - (2 * input_vec[1]) / pow(2*input_vec[1]* input_vec[1] + 2*input_vec[3]*input_vec[3] + 1, 3/2);
-
-    // dy/dt 
-    output_vec[3] = input_vec[4];  
-
-    // dv_y/dt
-    output_vec[4] = - (2 * input_vec[3]) / pow(2*input_vec[1]* input_vec[1] + 2*input_vec[3]*input_vec[3] + 1, 3/2);
-
-}
 
 float xaccel(float x, float y){
     return -(2 * x) / pow(2*x*x + 2*y*y + 1, 3/2);
@@ -41,12 +19,13 @@ void leapfrog(float prev_xpos, float prev_xvel, float prev_ypos, float prev_yvel
             float *new_xpos, float *new_xvel,  float *new_ypos, float *new_yvel, 
             float step){
     float half_xvel = prev_xvel + 0.5*step*xaccel(prev_xpos, prev_ypos);
-    *new_xpos = prev_xpos + step* half_xvel; 
-    *new_xvel = half_xvel + 0.5*step*xaccel(*new_xpos, *new_ypos); 
-
     float half_yvel = prev_yvel + 0.5*step*yaccel(prev_xpos, prev_ypos);
+    *new_xpos = prev_xpos + step* half_xvel; 
     *new_ypos = prev_ypos + step* half_yvel; 
+    
+    // new velocity should be using the newly calculated one, not the input
     *new_yvel = half_yvel + 0.5*step*yaccel(*new_xpos, *new_ypos); 
+    *new_xvel = half_xvel + 0.5*step*xaccel(*new_xpos, *new_ypos); 
 }
 
 int main(int arg_count, char **argv){
