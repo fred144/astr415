@@ -72,7 +72,7 @@ int main(int arg_count, char **argv){
     float *rk_new  = vector(1,2); 
     float *rk_old = vector(1,2); 
     
-    printf("# Time \t Euler Position \t Leap Position  \t RK4 Position \n");
+    printf("# Time \t x_position\t  y_position\t x_velocit\t y_velocity\n");
     for(float n = 1; n <= num_iter; n++){
         if (n == 1){
             printf("%3.12e \t %3.12e \t  %3.12e \t  %3.12e \t  %3.12e  \n", 

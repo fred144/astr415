@@ -12,14 +12,14 @@ done
 echo "--solving problem 2"
 
 echo "---doing leapfrog"
-stepsizes="1 0.5 0.25 0.01" 
+stepsizes="1 0.5 0.25 0.1" 
 for stepsize in $stepsizes
 do  
     ./p2_pset5_frog $stepsize &> problem_2_data/frog/step_$stepsize.dat
 done 
 
 echo "---doing rk4"
-stepsizes="1 0.5 0.25 0.01" 
+stepsizes="1 0.5 0.25 0.1" 
 for stepsize in $stepsizes
 do  
     ./p2_pset5_rk4 $stepsize &> problem_2_data/rk4/step_$stepsize.dat

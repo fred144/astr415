@@ -61,7 +61,7 @@ int main(int arg_count, char **argv){
     float *rk_new  = vector(1,4); 
     float *rk_old = vector(1,4); 
     
-    printf("# Time \t Euler Position \t Leap Position  \t RK4 Position \n");
+     printf("# Time \t x_position\t  y_position\t x_velocit\t y_velocity\n");
     for(float n = 1; n <= num_iter; n++){
         if (n == 1){
             printf("%3.12e \t %3.12e \t  %3.12e \t  %3.12e \t  %3.12e  \n", 
@@ -87,15 +87,15 @@ int main(int arg_count, char **argv){
         time = step_size * n; 
         
         rk4(rk_new, rk_old, 4, time, step_size, rk_new, coupled_first_order);
-        
+        // the output vector (stored in rk_new) has the format [x, vx, y, vy]
         printf("%3.12e \t %3.12e \t  %3.12e \t  %3.12e \t %3.12e \n", 
                 time, rk_new[1], rk_new[3], rk_new[2], rk_new[4]);
 
         // update the derivatives
-        rk_old[1] =  rk_new[2]; 
-        rk_old[2] = xaccel(rk_new[1], rk_new[3]);
-        rk_old[3] =  rk_new[4];
-        rk_old[4] = yaccel(rk_new[1], rk_new[3]);
+        rk_old[1] =  rk_new[2];  // x vel 
+        rk_old[2] = xaccel(rk_new[1], rk_new[3]); // x accel
+        rk_old[3] =  rk_new[4]; // y vel
+        rk_old[4] = yaccel(rk_new[1], rk_new[3]); // y accel
 
     
     }
