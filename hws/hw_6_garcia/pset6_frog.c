@@ -88,6 +88,7 @@ void grav_deriv(float t, float init[][6], float val_derivs[][6], float mass_vec[
 int main(int arg_count, char **argv){
     if (arg_count != 6){
         printf("> Usage: %s softening timestep end_time out_freq init_file \n", argv[0]);
+         printf("out_freq means output every other N");
         printf("Output of run will be placed in ./frog_data, be sure that the directory is clean before running");
         return 1;
     }
@@ -130,7 +131,7 @@ int main(int arg_count, char **argv){
     // float vals[][6]={
     //     mass,
     // };
-    
+
     // float vals[][6]={
     //     -0.5, 0.0, 0.0, 0.0, -initial_v/2.0, 0.0, 
     //     0.5, 0.0, 0.0, 0.0, initial_v/2.0, 0.0

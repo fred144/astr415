@@ -107,11 +107,11 @@ with plt.style.context("dark_background"):
                 xlabel=r"Relative Radial Velocity ($v_r$)",
                 ylabel="Separation (r)",
                 xlim=(0, 2),
-                ylim=(-3.5, 3.5),
+                ylim=(-8, 8),
             )
 
             energy_plot.plot(t, total_e, lw=1, color="cyan", alpha=0.50)
-            energy_plot.set(xlabel=r"Time", ylabel="Total Energy", ylim=(-1.5, 5))
+            energy_plot.set(xlabel=r"Time", ylabel="Total Energy", ylim=(-1.5, 8))
 
             # phase_plot.plot()
             # ax.axis("off")
@@ -128,6 +128,6 @@ print(fp_in)
 img, *imgs = [Image.open(f) for f in sorted(glob.glob(fp_in))]
 print("Processing Frames to a gif...")
 img.save(
-    fp=fp_out, format="GIF", append_images=imgs, save_all=True, duration=30, loop=0
+    fp=fp_out, format="GIF", append_images=imgs, save_all=True, duration=20, loop=0
 )
 print("Image saved to", fp_out)
