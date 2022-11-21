@@ -50,27 +50,34 @@ with plt.style.context("dark_background"):
             # x_vel = data[:, 4]
             # y_vel = data[:, 5]
             # z_vel = data[:, 6]
+            relative_pos = par2_xyz - par1_xyz
+            separation = np.linalg.norm(relative_pos)
+            v_rel_rad = np.dot(relative_vel, relative_pos) / separation
 
-            par1_xyz = data[0, 1:4]
-            par1_vxvyvz = data[0, 4:7]
-
-            par2_xyz = data[1, 1:4]
-            par2_vxvyvz = data[1, 4:7]
-
-            par1_vmag = np.sqrt(np.sum(np.square(par1_vxvyvz)))
-            par2_vmag = np.sqrt(np.sum(np.square(par2_vxvyvz)))
+            par1_xyz = data[0, 1:3]
+            par2_xyz = data[1, 1:3]
+            
+            par1_vxvyvz = data[0, 4:6]
+            par2_vxvyvz = data[1, 4:6]
+            
+            # par1_vmag = np.sqrt(np.sum(np.square(par1_vxvyvz)))
+            # par2_vmag = np.sqrt(np.sum(np.square(par2_vxvyvz)))
+            separation = np.linalg.norm(relative_pos)
+            
+            par1_vmag = np.sqrt(np.sum(par1_vxvyvz**2))
+            par2_vmag = np.sqrt(np.sum(par2_vxvyvz**2))
+            energy = 0.5 * (par1_vmag**2) + 0.5 * (par2_vmag**2) - (1 / separation)
+            total_e.append(energy)
 
             relative_vel = par2_vxvyvz - par1_vxvyvz
-            relative_pos = par2_xyz - par1_xyz
+            
 
-            separation = np.sqrt(np.sum(np.square(relative_pos)))
+            separation = np.linalg.norm(relative_pos)
             v_rel_rad = np.dot(relative_vel, relative_pos) / separation
 
             r.append(separation)
             v_r.append(v_rel_rad)
 
-            energy = (0.5 * par1_vmag**2 + 0.5 * par2_vmag**2) - 1 / separation
-            total_e.append(energy)
             fig, ax = plt.subplots(
                 nrows=1,
                 ncols=1,
@@ -83,8 +90,8 @@ with plt.style.context("dark_background"):
             ax.set(
                 xlim=(-1.5, 1.5),
                 ylim=(-1.5, 1.5),
-                xticklabels=[],
-                yticklabels=[],
+                # xticklabels=[],
+                # yticklabels=[],
             )
             ax.tick_params(direction="in")
             ax.plot(traj_x_par_1, traj_y_par_1, lw=0.8, ls="--", alpha=0.50)
@@ -111,7 +118,7 @@ with plt.style.context("dark_background"):
             )
 
             energy_plot.plot(t, total_e, lw=1, color="cyan", alpha=0.50)
-            energy_plot.set(xlabel=r"Time", ylabel="Total Energy", ylim=(-1.5, 8))
+            # energy_plot.set(xlabel=r"Time", ylabel="Total Energy", ylim=(-1.5, 8))
 
             # phase_plot.plot()
             # ax.axis("off")

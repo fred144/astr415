@@ -25,41 +25,45 @@ int readmatrix(size_t rows, size_t cols, float (*a)[cols], const char* filename)
     return 1; 
 }
 
-void grav_deriv(float t, float init[][6], float val_derivs[][6], float mass_vec[], int particles){
-    // each row of init is a particle with 6 columns for the parameters
+void flattened_grav_deriv(float t, float init[], float val_derivs[], int N_particles ){
+    // initi is a flattened array
     // the first three columns are (x,y,z), followed by the velocities for each component
     // each row of val derivs is the corresponding derivatives; i.e. (vx,vy,vz,ax,ay,az)
     float G = 1.0; 
-
-    for (int primary_p = 0;  primary_p < particles;  primary_p++){
+    int params = 6;
+    // asssuming mass vector is uniform
+     
+    for (int primary_p = 0;  primary_p < params*N_particles;  primary_p = primary_p*6){
         // loop over the particles, finding the acceleartions by considering all others as secondaries.
-        // p_ si for primaryrk4
-        float p_pos_x = init[primary_p][0];
-        float p_pos_y = init[primary_p][1];
-        float p_pos_z = init[primary_p][2];
+        // p_ si for primary
+        float p_pos_x = init[primary_p + 1];
+        float p_pos_y = init[primary_p + 2];
+        float p_pos_z = init[primary_p + 3];
 
-        float p_vel_x = init[primary_p][3];
-        float p_vel_y = init[primary_p][4];
-        float p_vel_z = init[primary_p][5];
-
-        val_derivs[primary_p][0] = p_vel_x;
-        val_derivs[primary_p][1] = p_vel_y;
-        val_derivs[primary_p][2] = p_vel_z;
+        float p_vel_x = init[primary_p + 4];
+        float p_vel_y = init[primary_p + 5];
+        float p_vel_z = init[primary_p + 6];
+        // store the velocities to the deriv array
+        val_derivs[primary_p + 1] = p_vel_x;
+        val_derivs[primary_p + 2] = p_vel_y;
+        val_derivs[primary_p + 3]= p_vel_z;
 
         float p_acc_x = 0;
         float p_acc_y = 0;
         float p_acc_z = 0;
         
-        for (int secondary_p = 0; secondary_p < particles; secondary_p++){ 
+        for (int secondary_p = 0; secondary_p < params*N_particles; primary_p = primary_p*6){ 
             // calculate each of the acceleration contributed by the other particles
             if (primary_p != secondary_p){
                 // printf("primary particle %d \n", primary_p);
                 // printf("primary particle %d \n", primary_p);
                 // get pertinent info about the secondary particle
-                float s_mass = mass_vec[secondary_p];
-                float s_pos_x = init[secondary_p][0];
-                float s_pos_y = init[secondary_p][1];
-                float s_pos_z = init[secondary_p][2];
+                // float s_mass = mass_vec[secondary_p];
+                float s_mass = 1.0;
+
+                float s_pos_x = init[secondary_p + 1];
+                float s_pos_y = init[secondary_p + 2];
+                float s_pos_z = init[secondary_p + 3];
                 
                 // calculate the difference in position between each component 
                 float x_diff = p_pos_x-s_pos_x;
@@ -78,12 +82,15 @@ void grav_deriv(float t, float init[][6], float val_derivs[][6], float mass_vec[
             }
 
         }
-        val_derivs[primary_p][3] = - p_acc_x;
-        val_derivs[primary_p][4] = - p_acc_y;
-        val_derivs[primary_p][5] = - p_acc_z;
+        val_derivs[primary_p] = - p_acc_x;
+        val_derivs[primary_p] = - p_acc_y;
+        val_derivs[primary_p] = - p_acc_z;
 
     } 
 }
+
+
+
 
 int main(int arg_count, char **argv){
     if (arg_count != 6){
@@ -94,26 +101,42 @@ int main(int arg_count, char **argv){
     }
     // float eccentricity =  atof(argv[1]) ;  
     // float initial_v = pow(2*(1-eccentricity), 0.5);
-    int Npar=2;
+    int Npar= 2;
+    int params = 6;
     // values take the form
     //  $x_N$, $y_N$, $z_N$, $\dot{x_N}$, $\dot{x_N}$, $\dot{x_N}$ 
     //argv[6]
+    float *y=vector(1,N);
     
     float data[2][7];
     float part_mass[2];
-    float vals[2][6];
-
+    
+    float *vals = vector(1 , Npar*params);
+    float *val_derivs = vector(1 , Npar*params);
+    
     readmatrix(2, 7, data, argv[5]);
 
+
+    vals[1] = data[0][1];
+    vals[2] = data[0][2];
+    vals[3] = data[0][3];
+    vals[4] = data[0][4];
+    vals[5] = data[0][5];
+    vals[6] = data[0][6];
+    vals[7] = data[1][1];
+    vals[8] = data[1][2];
+    vals[9] = data[1][3];
+    vals[10] =  data[1][4];
+    vals[11] =  data[1][5];
+    vals[12] =  data[1][6];
     // for(int i = 0; i < 2; ++i){
     //     for(int j = 0; j < 7; ++j)
     //         printf(" %3.10e ",  data[i][j]);
     //     puts("");
     // }
 
-    for (int i =0; i < Npar; i++){
-        part_mass[i] = data[i][0];
-    }
+
+   
 
     // for(int i = 0; i < 2; ++i){
     //         printf(" %3.10e ",  part_mass[i]);
@@ -137,7 +160,7 @@ int main(int arg_count, char **argv){
     //     0.5, 0.0, 0.0, 0.0, initial_v/2.0, 0.0
     //     };
     
-    float val_derivs[Npar][6];
+   
     // float part_mass[] = {1., 1.}; 
     int output_freq = atoi(argv[4]);
 	float end_time = atof(argv[3]);
@@ -150,7 +173,7 @@ int main(int arg_count, char **argv){
 
     // naming scheme 
     char filename[200];
-    sprintf(filename, "./frog_data/out_%04d.txt", 0);
+    sprintf(filename, "./rk4_data/out_%04d.txt", 0);
     
     // print the intial conditions
     printf("# \t time, \t xpos, \t ypos, \t zpos, \t xvel, \t yvel, \t zvel\n");
@@ -167,8 +190,8 @@ int main(int arg_count, char **argv){
     fprintf(fp, "# \t time, \t xpos, \t ypos, \t zpos, \t xvel, \t yvel, \t zvel\n");
     for (int i=0; i<Npar; i++){
         fprintf(fp, "%3.10e %3.10e %3.10e %3.10e %3.10e %3.10e %3.10e\n",
-            time, vals[i][0], vals[i][1], vals[i][2], vals[i][3], vals[i][4], vals[i][5]
-            );	
+              time, vals[i][0], vals[i][1], vals[i][2], vals[i][3], vals[i][4], vals[i][5]
+             );	
     }
     fclose(fp );
 
@@ -186,31 +209,7 @@ int main(int arg_count, char **argv){
         //  val has x, y, z, vx, vy, vz
         //  val derivs has vx, vy, vz, ax, ay, az
         
-        for (int p = 0; p < Npar; p++){
-            // replace the velocity with the half velocity kick
-            float half_step = 0.5*step;
-            float half_time = time + half_step;
-
-            vals[p][3] = vals[p][3] + half_step*val_derivs[p][3];  //x
-            vals[p][4] = vals[p][4] + half_step*val_derivs[p][4];  //y
-            vals[p][5] = vals[p][5] + half_step*val_derivs[p][5];  //z
-
-            // this is the new positons
-            vals[p][0] = vals[p][0] + step * vals[p][3];
-            vals[p][1] = vals[p][1] + step * vals[p][4];
-            vals[p][2] = vals[p][2] + step * vals[p][5];
-
-            // time
-            grav_deriv(half_time, vals, val_derivs, part_mass, Npar);
-            
-            // new velocities
-            vals[p][3] = vals[p][3] + half_step * val_derivs[p][3];
-            vals[p][4] = vals[p][4] + half_step * val_derivs[p][4];
-            vals[p][5] = vals[p][5] + half_step * val_derivs[p][5];
-            
-           
-
-        }
+      
 
         time = n * step;
        
