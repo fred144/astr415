@@ -70,9 +70,11 @@ For a given time, this particle 1 at $(x_1, y_1, z_1)$ experiences this $(\ddot{
 This generalized force produces $3N$ coupled ODEs of the second order. Which we can reduce to the first order, giving $6N$ coupled first order equations. For our case of the 2 body problem. We have 12 couples equations. This is from the fact that we are calculating the velocity and acceleration all in 3 dimensions (6 parameters). But not only on 1 caused by 2, but also on 2 caused by 1, giving us 12. 
 
 We are given the initial conditions $m_1$ =  $m_2$ = 1
+
 $$
 [ x_1, y_1, z_1, \dot{x_1}, \dot{x_1}, \dot{x_1} ] = [ -\frac{1}{2}, 0, 0, 0, -\frac{v}{2}, 0 ] 
 $$
+
 $$
 [ x_2, y_2, z_2, \dot{x_2}, \dot{x_2}, \dot{x_2} ] = [ \frac{1}{2}, 0, 0, 0, \frac{v}{2}, 0] 
 $$
