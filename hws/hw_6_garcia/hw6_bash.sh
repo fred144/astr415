@@ -4,7 +4,7 @@ echo "RUNNING FROG"
 rm  frog_data/*
 rm  frog_sequence/*
 # no softening
-./frog 0 0.05 1 1 e_05_init.txt 
+./frog 0 0.05 10 1 e_05_init.txt 
 python3 ./plot.py frog_data/ frog_sequence/ frog 0.5
 
 # rm  frog_data/*

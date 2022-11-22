@@ -8,7 +8,6 @@ from PIL import Image
 if len(sys.argv) != 5:
     print(sys.argv[0], "usage:")
     print("{} data_directory output_directory method eccentricity".format(sys.argv[0]))
-
     exit()
 
 print("plotting script")
@@ -17,7 +16,7 @@ frames_dir = sys.argv[2]
 method = sys.argv[3]
 eccentricty = sys.argv[4]
 data_set = sorted(os.listdir(parent_dir))  # [0:10]
-
+# python3 ./plot.py frog_data/ frog_sequence/ frog 0.5
 t = []
 total_e = []
 traj_x_par_1 = []
@@ -50,19 +49,18 @@ with plt.style.context("dark_background"):
             # x_vel = data[:, 4]
             # y_vel = data[:, 5]
             # z_vel = data[:, 6]
-            relative_pos = par2_xyz - par1_xyz
-            separation = np.linalg.norm(relative_pos)
-            v_rel_rad = np.dot(relative_vel, relative_pos) / separation
+           
 
             par1_xyz = data[0, 1:3]
             par2_xyz = data[1, 1:3]
-            
+            relative_pos = par2_xyz - par1_xyz
+          
             par1_vxvyvz = data[0, 4:6]
             par2_vxvyvz = data[1, 4:6]
             
             # par1_vmag = np.sqrt(np.sum(np.square(par1_vxvyvz)))
             # par2_vmag = np.sqrt(np.sum(np.square(par2_vxvyvz)))
-            separation = np.linalg.norm(relative_pos)
+            separation = np.sqrt(np.sum(relative_pos**2))
             
             par1_vmag = np.sqrt(np.sum(par1_vxvyvz**2))
             par2_vmag = np.sqrt(np.sum(par2_vxvyvz**2))
@@ -70,10 +68,10 @@ with plt.style.context("dark_background"):
             total_e.append(energy)
 
             relative_vel = par2_vxvyvz - par1_vxvyvz
-            
-
-            separation = np.linalg.norm(relative_pos)
+            separation =np.sqrt(np.sum(relative_pos**2))
             v_rel_rad = np.dot(relative_vel, relative_pos) / separation
+
+           
 
             r.append(separation)
             v_r.append(v_rel_rad)
