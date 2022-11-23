@@ -3,12 +3,7 @@
 
 void rk4(float y[], float dydx[], int n, float x, float h, float yout[],
 	void (*derivs)(float, float [], float []))
-{	// n is the number of system
-	// h is the step size
-	// y out and y can be the same thing 
-
-	// y is the function evuluated at x 
-	// y 
+{
 	int i;
 	float xh,hh,h6,*dym,*dyt,*yt;
 

@@ -10,7 +10,7 @@ if len(sys.argv) != 5:
     print("{} data_directory output_directory method eccentricity".format(sys.argv[0]))
     exit()
 
-print("plotting script")
+print("PLOTTING SCRIPTS")
 parent_dir = sys.argv[1]
 frames_dir = sys.argv[2]
 method = sys.argv[3]
@@ -49,7 +49,6 @@ with plt.style.context("dark_background"):
             # x_vel = data[:, 4]
             # y_vel = data[:, 5]
             # z_vel = data[:, 6]
-           
 
             par1_xyz = data[0, 1:3]
             par2_xyz = data[1, 1:3]
@@ -76,63 +75,63 @@ with plt.style.context("dark_background"):
             r.append(separation)
             v_r.append(v_rel_rad)
 
-            fig, ax = plt.subplots(
-                nrows=1,
-                ncols=1,
-                dpi=200,
-                figsize=(4, 4),  # sharex=True, sharey=True
-            )
-            ax.scatter(par_x[0], par_y[0], zorder=3)
-            ax.scatter(par_x[1], par_y[1], zorder=3)
-            ax.scatter(0, 0, marker="+", color="k", zorder=3)
-            ax.set(
-                xlim=(-1.5, 1.5),
-                ylim=(-1.5, 1.5),
-                # xticklabels=[],
-                # yticklabels=[],
-            )
-            ax.tick_params(direction="in")
-            ax.plot(traj_x_par_1, traj_y_par_1, lw=0.8, ls="--", alpha=0.50)
-            ax.plot(traj_x_par_2, traj_y_par_2, lw=0.8, ls="--", alpha=0.50)
-            ax.text(
-                0.05,
-                0.85,
-                method + "\ne={}".format(eccentricty),
-                transform=ax.transAxes,
-            )
+        fig, ax = plt.subplots(
+            nrows=1,
+            ncols=1,
+            dpi=200,
+            figsize=(4, 4),  # sharex=True, sharey=True
+        )
+        ax.scatter(par_x[0], par_y[0], zorder=3)
+        ax.scatter(par_x[1], par_y[1], zorder=3)
+        ax.scatter(0, 0, marker="+", color="k", zorder=3)
+        ax.set(
+            xlim=(-1.5, 1.5),
+            ylim=(-1.5, 1.5),
+            # xticklabels=[],
+            # yticklabels=[],
+        )
+        ax.tick_params(direction="in")
+        ax.plot(traj_x_par_1, traj_y_par_1, lw=0.8, ls="--", alpha=0.50)
+        ax.plot(traj_x_par_2, traj_y_par_2, lw=0.8, ls="--", alpha=0.50)
+        ax.text(
+            0.05,
+            0.85,
+            method + "\ne={}".format(eccentricty),
+            transform=ax.transAxes,
+        )
 
-            phase_plot = ax.inset_axes([1.2, 0.6, 1, 0.4])
-            energy_plot = ax.inset_axes([1.2, 0.05, 1, 0.4])
+        phase_plot = ax.inset_axes([1.2, 0.6, 1, 0.4])
+        energy_plot = ax.inset_axes([1.2, 0.05, 1, 0.4])
 
-            phase_plot.tick_params(direction="in")
-            energy_plot.tick_params(direction="in")
+        phase_plot.tick_params(direction="in")
+        energy_plot.tick_params(direction="in")
 
-            phase_plot.plot(r, v_r, lw=1, color="magenta", alpha=0.50)
-            phase_plot.set(
-                xlabel=r"Relative Radial Velocity ($v_r$)",
-                ylabel="Separation (r)",
-                xlim=(0, 2),
-                ylim=(-8, 8),
-            )
+        phase_plot.scatter(r, v_r, s=0.5, color="magenta", alpha=0.50)
+        phase_plot.set(
+            xlabel=r"Relative Radial Velocity ($v_r$)",
+            ylabel="Separation (r)",
+            xlim=(0, 2),
+            # ylim=(-2, 2),
+        )
 
-            energy_plot.plot(t, total_e, lw=1, color="cyan", alpha=0.50)
-            # energy_plot.set(xlabel=r"Time", ylabel="Total Energy", ylim=(-1.5, 8))
+        energy_plot.scatter(t, total_e, s=0.5, color="cyan", alpha=0.50)
+        energy_plot.set(xlabel=r"Time", ylabel="Total Energy")
 
-            # phase_plot.plot()
-            # ax.axis("off")
-            plt.savefig("./{}/{}.png".format(frames_dir, out), bbox_inches="tight")
-            plt.close()
+        # phase_plot.plot()
+        # ax.axis("off")
+        plt.savefig("./{}/frame_{}_{}_{}.png".format(frames_dir, out, method, eccentricty), bbox_inches="tight")
+        plt.close()
 
 
 # filepaths
 
-fp_in = "./frog_sequence/*.png"
-fp_out = "./{}_{}.gif".format(method, eccentricty)
-print(fp_in)
-# https://pillow.readthedocs.io/en/stable/handbook/image-file-formats.html#gif
-img, *imgs = [Image.open(f) for f in sorted(glob.glob(fp_in))]
-print("Processing Frames to a gif...")
-img.save(
-    fp=fp_out, format="GIF", append_images=imgs, save_all=True, duration=20, loop=0
-)
-print("Image saved to", fp_out)
+# fp_in = "./{}*.png".format(frames_dir)
+# fp_out = "./{}_{}.gif".format(method, eccentricty)
+# print(fp_in)
+# # https://pillow.readthedocs.io/en/stable/handbook/image-file-formats.html#gif
+# img, *imgs = [Image.open(f) for f in sorted(glob.glob(fp_in))]
+# print("Processing Frames to a gif...")
+# img.save(
+#     fp=fp_out, format="GIF", append_images=imgs, save_all=True, duration=4, loop=0
+# )
+# print("Image saved to", fp_out)

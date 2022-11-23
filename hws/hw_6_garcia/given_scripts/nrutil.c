@@ -292,4 +292,3 @@ void free_f3tensor(float ***t, long nrl, long nrh, long ncl, long nch,
 	free((FREE_ARG) (t+nrl-NR_END));
 }
 /* (C) Copr. 1986-92 Numerical Recipes Software ?421.1-9. */
-

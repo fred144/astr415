@@ -16,8 +16,6 @@ void deriv(float t, float y[], float f[]){
 	f[2]=-y[1];
 }
 
-
-
 int main(int argc,char *argv[]){
   if (argc != 2) {
     printf("Usage: %s rk4|eu|lf \n",argv[0]);

@@ -8,6 +8,7 @@ GNU bash, version 5.0.17(1)-release (x86_64-pc-linux-gnu)
 python 3.8.10 
 matplotlib
 numpy
+PIL
 gcc (Ubuntu 9.3.0-17ubuntu1~20.04) 9.3.0
 ```
 The compressed folder should contain the precompiled code. 
@@ -20,24 +21,31 @@ user~$ ./hw5_bash.sh
 ```
 
 After that, the directory should contain 
+
 ```
-    4096 Nov  4 20:31 given_scripts   [numerical recipes]
-     571 Nov  6 01:57 hw5_bash.sh     [handles different stepsizes and executing]
-     352 Nov  6 01:47 makefile        [compiles stuff, all or clean]
-  951489 Nov  6 02:22 p1_b.png        [plot showing the sines]
-  133321 Nov  6 02:22 p1_c.png        [plot err vs step size]
-   22624 Nov  6 01:57 p1_pset5        [executable for first problem]
-    3272 Nov  5 19:15 p1_pset5.c      [script for first problem]
- 1010653 Nov  6 02:22 p2_ab.png       [plot showing orbits and energy]    
-    3949 Nov  5 23:26 p2_pset5.c      [script for first problem]
-   22608 Nov  6 01:57 p2_pset5_frog   [executable for 2nd problem]
-    3939 Nov  5 23:45 p2_pset5_frog.c [script for 2nd problem]
-   22520 Nov  6 01:57 p2_pset5_rk4    [executable for 2nd problem]
-    3077 Nov  6 00:40 p2_pset5_rk4.c  [script for 2nd problem]
-    4492 Nov  6 02:22 plot.py         [main plotting scripts]
-    4096 Nov  6 01:59 problem_1_data  [directory contianing tables for p1]
-    4096 Nov  6 01:30 problem_2_data  [directory contianing tables for p2]
-    6501 Nov  6 02:33 readme.md       [this file]
+total 19M
+-rwxr-xr-x 1   27K Nov 22 18:46 a.out        [test]
+drwxr-xr-x 2  1.1M Nov 22 21:44 data_frog    [data gets temporarily stored here]
+drwxr-xr-x 2  1.1M Nov 22 21:44 data_rk4     [data gets temporarily stored here]
+-rw-r--r-- 1   239 Nov 22 14:08 e_05_init.txt [starting conditions]
+-rw-r--r-- 1   239 Nov 22 14:08 e_09_init.txt [starting conditions]
+-rwxr-xr-x 1   27K Nov 22 21:06 frog            [executable]
+-rw-r--r-- 1   15M Nov 22 21:00 frog_0.5.gif    [good gif]
+-rw-r--r-- 1   26K Nov 22 21:36 frog_0.9.gif    [too short gif]
+drwxr-xr-x 3  4.0K Nov 22 18:48 given_scripts   [num rec scripts]
+-rwxr-xr-x 1   706 Nov 22 21:41 hw6_bash.sh     [run me]
+-rw-r--r-- 1   256 Nov 22 18:38 makefile        [don't delete]
+-rw-r--r-- 1  8.1K Nov 22 16:33 matrix_frog.c   [trial script]
+-rw-r--r-- 1  4.3K Nov 22 21:43 plot.py         [plotting func]
+-rw-r--r-- 1  7.4K Nov 22 20:07 pset6_frog.c    [main frog script]
+-rw-r--r-- 1  7.0K Nov 22 19:11 pset6_rk4.c     [main rk4 script]
+-rw-r--r-- 1  6.0K Nov 22 21:43 readme.md       [this file]
+-rwxr-xr-x 1   27K Nov 22 21:06 rk4             [executable]
+-rw-r--r-- 1   26K Nov 22 21:36 rk4_0.5.gif     [bad gif]
+-rw-r--r-- 1  1.8M Nov 22 17:10 rk4_0.9.gif     [bad gif]
+drwxr-xr-x 2  4.0K Nov 22 21:43 saved_frames    [images/ results]
+drwxr-xr-x 2  128K Nov 22 21:40 sequence_frog   [temp directory]
+drwxr-xr-x 2  4.0K Nov 22 21:40 sequence_rk4    [temp directory]
 ```
 ## Commentary and Answers 
 
@@ -90,3 +98,68 @@ v = \sqrt{2(1-e)}
 $$
 
 We are then told to test  $e = 0.5$ and $e = 0.9$, so we just adjust our initial conditions accordingly. 
+
+Note, I have chose my program to run using the parameters stored in
+
+```./rk4 0 0.05 10 1 e_05_init.txt```
+
+Where the first index is the softening implemented as ```0 ```for now. ```0.05``` is the step size, ```10``` is the *end time* and `e_05_init.tx` is the input file with the header format:
+
+```
+# paticle_mass, x, y, z, v_x, v_y, v_z
+```
+
+Notice that eccentricity is not part of this. This is a strict 2 body problem and, in the spirit of generalizing our nbody code, will not be taking in the eccentricity. Hence, given the intial velocities, we have calculated the corresponding initial velocities. 
+
+For the $e = 0.5$ case, it is stored in `e_05_init.txt` and accordingly for `e_09_init.txt`. 
+
+We are told to analyze it for 100 orbits. This is dependent on the eccentricity. 
+Given that $a = \frac{1}{1+e}$
+
+$ p^2 = \frac{4\pi^2}{GM}a^3 \rightarrow p = \frac{2\pi}{\sqrt{GM}} \frac{1}{(1+e)^{3/2}}$
+
+for equal mass particles $M=2$ and if we take $G=1$. 
+
+$$
+p = \frac{2\pi}{\sqrt{2}} \frac{1}{(1+e)^{3/2}}
+$$
+
+Finally, we get p(0.5) = 2.41 and p(0.9) = 1.69. Which means our end time parameters should be adjust accordingly to 241 and 169. To make smooth visualizations, the output time step should be as small as possible while having enough time for dynamical evolution. Hence, we sometimes have to use lower times. This is strictly a computational resource issue. My laptop takes too long to render these gifs. Also, the time steps in the gifs are not consistent. some are sped up some are not. this is just a choice due to rendering times.
+
+>smooth gifs take time to render. Unless you want to wait a long time, don't run the bash scripts. It also auotmates deletion inside the sequence_ and data_ directories, so last frame of each rendering run is saved in saved_frames. Or at least comment out the lines calling the plotting scripts.
+___
+
+Here is a rendered gif for the 0.5 eccentricity. If reading on the pdf, click on the link. it should redirect to github. these take way too long to render so I only made one full one. The other gif are unfinished. 
+<p align="center">
+<img src=./frog_0.5.gif alt="drawing" width="800"/> 
+</p>
+
+
+Here are the final frames for each.  
+
+</p>
+<p align="center">
+<img src=./saved_frames/frame_4800_frog_0.5.png alt="drawing" width="800"/> 
+
+</p>
+
+</p>
+<p align="center">
+<img src=./saved_frames/frame_9999_frog_0.9.png alt="drawing" width="800"/> 
+
+</p>
+
+</p>
+<p align="center">
+<img src=./saved_frames/frame_4800_rk4_0.5.png alt="drawing" width="800"/> 
+
+</p>
+
+</p>
+<p align="center">
+<img src=./saved_frames/frame_9999_rk4_0.9.png alt="drawing" width="800"/> 
+
+</p>
+
+
+Per usual leapfrog is conservative while rk4 is not. this is especially true when looking at the total energy plots. Whereby there is a noticable sag for the rk4, while the leapfrog reaches a steady state. The volume is conserved in phases space for leapfrog which hints at conservation. For rk4 this is not the case, it is loosing energy so it seems to be shrinking. The energy when comparing, is lower in te rk4. 

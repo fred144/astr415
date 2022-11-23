@@ -1,16 +1,39 @@
 #!/bin/bash 
-echo "RUNNING THIS WILL TAKE SOME TIME; PYTHON PLOTTING IS SLOW"
-echo "RUNNING FROG"
-rm  frog_data/*
-rm  frog_sequence/*
-# no softening
-./frog 0 0.05 10 1 e_05_init.txt 
-python3 ./plot.py frog_data/ frog_sequence/ frog 0.5
+echo "*********************************************************"
+echo "RUNNING THIS WILL TAKE SOME TIME; PYTHON IS SLOW"
+echo "*********************************************************"
 
-# rm  frog_data/*
-# rm  frog_sequence/*
-# # no softening output every other 3 
-# ./frog 0 0.003 18 10 e_09_init.txt 
-# python3 ./plot.py frog_data/ frog_sequence/ frog 0.9
-# rm  frog_data/*
-# rm  frog_sequence/*s
+echo "RUNNING FROG"
+
+# no softening'
+
+rm  data_frog/*.txt
+rm  sequence_frog/*.png
+./frog 0 0.05 240 1 e_05_init.txt 
+python3 ./plot.py data_frog/ saved_frames/ frog 0.5
+
+rm  data_frog/*.txt
+rm  sequence_frog/*.png
+
+./frog 0 0.003 169 1 e_09_init.txt 
+python3 ./plot.py data_frog/ saved_frames/ frog 0.9
+
+rm  data_frog/*.txt
+rm  sequence_frog/*.png
+
+echo "RUNNING RK4"
+
+rm  data_rk4/*.txt
+rm  sequence_rk4/*.png
+
+./rk4 0 0.05  240 1 e_05_init.txt 
+python3 ./plot.py data_rk4/ saved_frames/ rk4 0.5
+
+rm  data_rk4/*.txt
+rm  sequence_rk4/*.png
+
+./rk4 0 0.003 169 1 e_09_init.txt 
+python3 ./plot.py data_rk4/ saved_frames/ rk4 0.9
+
+rm  data_rk4/*.txt
+rm  sequence_rk4/*.png
