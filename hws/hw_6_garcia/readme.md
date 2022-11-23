@@ -50,8 +50,8 @@ drwxr-xr-x 2  4.0K Nov 22 21:40 sequence_rk4    [temp directory]
 ## Commentary and Answers 
 
 We have a system of two particles, $1$ and $2$ with a given mass, position, and velocities in 3D space
-[$m_1$, $x_1$, $y_1$, $z_1$, $\dot{x_1}$, $\dot{x_1}$, $\dot{x_1}$ ] 
-[$m_2$, $x_2$, $y_2$, $z_2$, $\dot{x_2}$, $\dot{x_2}$, $\dot{x_2}$ ]
+[$m1$ , $x_1$, $y_1$, $z_1$, $\dot{x_1}$, $\dot{x_1}$, $\dot{x_1}$ ] 
+[$m2$ , $x_2$, $y_2$, $z_2$, $\dot{x_2}$, $\dot{x_2}$, $\dot{x_2}$ ]
 
 Particle 1 experiences an acceleration $\ddot{\vec{r_1}} = (\ddot{x_1}, \ddot{y_1}, \ddot{z_1})$ due to force of gravity from Particle 2. This can be stated as
 
