@@ -129,7 +129,7 @@ Finally, we get p(0.5) = 2.41 and p(0.9) = 1.69. Which means our end time parame
 >smooth gifs take time to render. Unless you want to wait a long time, don't run the bash scripts. It also auotmates deletion inside the sequence_ and data_ directories, so last frame of each rendering run is saved in saved_frames. Or at least comment out the lines calling the plotting scripts.
 ___
 
-Here is a rendered gif for the 0.5 eccentricity. If reading on the pdf, click on the link. it should redirect to github. these take way too long to render so I only made one full one. The other gif are unfinished. 
+Here is a rendered gif for the 0.5 eccentricity. If reading on the pdf, click on the static gif. it should redirect to github. these take way too long to render so I only made one full one. The other gif are unfinished. 
 <p align="center">
 <img src=./frog_0.5.gif alt="drawing" width="800"/> 
 </p>
